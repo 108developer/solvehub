@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+.glow-text {
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.glow-text:hover {
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px rgba(255, 255, 255, 1), 0 0 30px rgba(255, 255, 255, 1);
+}
+
+.glow-box {
+  transition: box-shadow 0.3s ease-in-out;
+  /* Smooth transition for the glow effect */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.glow-box:hover {
+  box-shadow: 0 0 10px rgba(255, 255, 255, 0.8),
+    0 0 20px rgba(255, 255, 255, 1),
+    0 0 30px rgba(255, 255, 255, 1);
+  /* Glow effect on hover */
+}
