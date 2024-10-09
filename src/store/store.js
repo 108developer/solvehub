@@ -3,7 +3,7 @@ import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 
-const baseURL = 'http://localhost:8000'; // Your Node.js backend URL
+const baseURL = 'https://slovehub-be.vercel.app/'; // Your Node.js backend URL
 
 // Zustand store to manage authentication state
 const useAuthStore = create(persist((set) => ({
