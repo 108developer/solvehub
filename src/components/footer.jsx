@@ -4,16 +4,18 @@ import React from 'react'
 const Footer = () => {
     return (
         <>
-            <div className="w-full relative bg-[#1160a3] flex h-full items justify-center">
-                <div className="absolute text-[16px] left-0  flex flex-col h-full justify-center">
-                    <div className="flex font-bold z-10 flex-col text-white ">Never placed an order at Solve Hube before?</div>
-                    <div className="flex font-bold z-10 flex-col text-white ">use promo code solvehub11</div>
-                    <div className="flex text-[34px] font-bold z-10 flex-col text-white ">15% OFF your first Order</div>
-                    <a href="/" className="bg-[#57bad9] w-fit hover:bg-transparent/15 py-2 px-6 transition duration-500 ease-in-out rounded-3xl font-bold ">Order Now</a>
-                </div>
-                <div className="relative flex h-full text-start ">
-                    <Image className="absolute -right-[130px] z-10 h-[300px] w- " src='https://solvehub.in/themes/garland/img/brid.png' width={700} height={100} alt="Girl-Image" />
-                    <Image className="z-20 h-[300px]" src='https://solvehub.in/themes/garland/img/easy.png' width={200} height={100} alt="Girl-Image" />
+            <div className="w-full relative bg-[#1160a3] flex h-full items-center justify-center">
+                <Image className="absolute z-10 right-36 h-[300px] w-[600px]" src='https://solvehub.in/themes/garland/img/brid.png' width={700} height={100} alt="Girl-Image" />
+                <div className="relative flex items-center justify-center w-[1200px]" >
+                    <div className="absolute text-[16px] left-0  flex flex-col h-full w-full justify-center">
+                        <div className="flex text-[34px] font-light z-10 flex-col text-white ">Relax! Writing is our job</div>
+                        <div className="flex font-light z-10 flex-col text-white ">We have been writing essays since 2008. Quick, easy and</div>
+                        <div className="flex  font-light z-10 flex-col text-white ">secure. Order Now with 100% confidence</div>
+                        <a href="/" className="bg-[#57bad9] w-fit hover:bg-transparent/15 py-2 px-6 transition duration-500 ease-in-out rounded-3xl font-bold ">Order Now</a>
+                    </div>
+                    <div className=" flex w-[150px] h-[300px] items-center jus text-start ">
+                        <Image className="absolute z-10 h-[300px] right-96  w-fit" src='https://solvehub.in/themes/garland/img/easy.png' width={700} height={100} alt="Girl-Image" />
+                    </div>
                 </div>
             </div>
             <div className="w-full relative flex object-fill items justify-center h-[200px]">
@@ -139,7 +141,7 @@ const Footer = () => {
                                 </a>
                                 <div className='relative'>
                                     <input type="text" placeholder='Email Address...' className='outline-none border bg-transparent p-2 placeholder:' />
-                                    
+
                                 </div>
                             </nav>
                         </div>

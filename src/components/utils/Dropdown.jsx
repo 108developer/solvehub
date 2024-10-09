@@ -1,4 +1,3 @@
-// utils/Dropdown.js
 import React, { useState, useEffect, useRef } from 'react';
 
 const Dropdown = ({ title, items, onSelect }) => {
@@ -34,19 +33,28 @@ const Dropdown = ({ title, items, onSelect }) => {
 
     return (
         <div className="relative" ref={dropdownRef}>
-            <button onClick={toggleDropdown} className="flex glow-text items-center">
+            <button onClick={toggleDropdown} className="gap-px flex glow-text items-center">
                 {title}
+                {isOpen ? (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-up">
+                        <polyline points="18 15 12 9 6 15"></polyline>
+                    </svg>
+                ) : (
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="feather feather-chevron-down">
+                        <polyline points="6 9 12 15 18 9"></polyline>
+                    </svg>
+                )}
             </button>
             {isOpen && (
-                <ul className="absolute z-50 w-80 bg-transparent/65 shadow-lg rounded-md">
-                    {items.map((item, index) => (
+                <ul className="absolute z-50 w-80 text-white bg-transparent/65 shadow-lg rounded-md">
+                    {items.map((item) => (
                         <li
-                            key={index}
+                            key={item._id} // Use item._id for unique key
                             onClick={() => handleItemClick(item)}
-                            className="px-4 py-2  glow-text cursor-pointer"
+                            className="px-4 py-2 glow-text cursor-pointer"
                         >
-                            <a href={`/${item}`}>
-                            {item}
+                            <a href={`/${item.slug}`}> {/* Access the slug property for the link */}
+                                {item.title} {/* Render the title instead of the entire object */}
                             </a>
                         </li>
                     ))}

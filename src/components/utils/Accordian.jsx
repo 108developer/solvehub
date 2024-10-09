@@ -17,7 +17,7 @@ const Accordian = ({ data }) => {
                             className="w-full text-left p-4 flex bg-gray-200 justify-between items-center"
                             onClick={() => toggleFAQ(index)}
                         >
-                            <span className="font-semibold text-lg">{faq.question}</span>
+                            <span className="font-semibold text-lg">{faq.ques}</span>
                             <svg
                                 className={`w-5 h-5 transform transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''
                                     }`}
@@ -38,7 +38,7 @@ const Accordian = ({ data }) => {
                             className={` overflow-hidden transition-[max-height] duration-300 ease-in-out ${openIndex === index ? 'max-h-screen border' : 'max-h-0'
                                 }`}
                         >
-                            <p className="p-4 text-gray-600">{faq.answer}</p>
+                            <p className="p-4 text-gray-600">{faq.ans}</p>
                         </div>
                     </div>
                 ))}

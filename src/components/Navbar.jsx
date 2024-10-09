@@ -3,17 +3,32 @@ import Image from 'next/image'
 import React, { useEffect, useState } from 'react'
 import Footer from './footer';
 import Dropdown from './utils/Dropdown';
+import LoginModal from './utils/loginmodal';
+import useAuthStore from '@/store/store';
+import EditModal from './utils/editModal';
 
 const Navbar = ({ children }) => {
-    const [bgColor, setBgColor] = useState('bg-transparent'); // Initial state for background color
+    const { user, loadServices, loadSubjects, allSubjects, allServices } = useAuthStore()
+    const [bgColor, setBgColor] = useState('bg-transparent/75'); // Initial state for background color
+    const [bgimage, setBgimage] = useState('https://solvehub.in/themes/garland/img/logo4.png'); // Initial state for background color
+
+    // Load services when component mounts if not already loaded
+    useEffect(() => {
+        if (!allServices.length || !allSubjects.length) {
+            loadServices();
+            loadSubjects()
+        }
+    }, [ loadSubjects, loadServices]);
 
     // Change background color based on scroll position
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 300) { // Change 200 to the position you want
+            if (window.scrollY > 100) { // Change 200 to the position you want
                 setBgColor('bg-white'); // Set to white background
+                setBgimage('https://solvehub.in/themes/garland/img/logo10.png'); // Set to white background
             } else {
-                setBgColor('bg-transparent'); // Keep it transparent
+                setBgimage('https://solvehub.in/themes/garland/img/logo4.png'); // Set to white background
+                setBgColor('bg-transparent/75'); // Keep it transparent
             }
         };
 
@@ -39,8 +54,8 @@ const Navbar = ({ children }) => {
         "Project Synopsis or Proposal",
         "Term Paper Writing Services",
         "Thesis Proposal Writing"
-      ];
-      
+    ];
+
 
     const subjects = [
         "AC & Finance",
@@ -49,12 +64,12 @@ const Navbar = ({ children }) => {
         "Law Assignment Writing",
         "Management Assignment Writing",
         "Nursing Assignment Writing"
-      ];
+    ];
 
     const handleSelect = (item) => {
         console.log('Selected item:', item); // Handle the selected item
     };
-
+    console.log(allSubjects)
     return (
         <div className='relative'>
             <div className=''>
@@ -81,35 +96,37 @@ const Navbar = ({ children }) => {
                                     <svg xmlns="http://www.w3.org/2000/svg" fill="white" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
                                         <path stroke-linecap="round" stroke-linejoin="round" d="M15.75 6a3.75 3.75 0 1 1-7.5 0 3.75 3.75 0 0 1 7.5 0ZM4.501 20.118a7.5 7.5 0 0 1 14.998 0A17.933 17.933 0 0 1 12 21.75c-2.676 0-5.216-.584-7.499-1.632Z" />
                                     </svg>
-                                    <span className='glow-text'>Login</span>
+                                    <span className='glow-text'>
+                                        {user ? <EditModal /> : <LoginModal />}
+                                    </span>
                                 </div>
                             </div>
                         </div>
 
                     </div>
-                    <div className={`top-[49px] z-50 absolute ${bgColor == 'bg-transparent' ? 'text-[#e4e9f0]' : 'text-black'} ${bgColor} w-full items-center justify-center flex p-5 transition-colors duration-300`}>
+                    <div className={`top-[49px] z-40 absolute ${bgColor == 'bg-transparent/75' ? 'text-[#e4e9f0]' : 'text-black'} ${bgColor} w-full items-center justify-center flex p-5 transition-colors duration-300`}>
                         <div className='flex justify-between w-[1100px]'>
-                            <Image src='https://solvehub.in/themes/garland/img/logo10.png' width={120} height={120} alt='png' />
-                            <div className='capitalize flex gap-3'>
-                                <div className='font-bold glow-text'>Home</div>
-                                <div className='font-bold relative'>
+                            <Image src={bgimage} width={120} height={120} alt='png' />
+                            <div className='capitalize flex gap-7'>
+                                <a href={`/`} className='font-bold glow-text'>Home</a>
+                                <div className='font-bold flex gap-px relative'>
                                     <Dropdown
                                         title="Services"
-                                        items={services}
+                                        items={allServices}
                                         onSelect={handleSelect}
                                     />
                                 </div>
                                 <div className='font-bold'><Dropdown
                                     title="Subjects"
-                                    items={subjects}
+                                    items={allSubjects}
                                     onSelect={handleSelect}
                                 /></div>
                                 <div className='font-bold glow-text'>Blog</div>
-                                <div className='font-bold glow-text'>Review</div>
-                                <div className='font-bold glow-text'>Contacts</div>
-                                <div className='font-bold glow-text'>Price</div>
+                                <a href={`/review`} className='font-bold glow-text'>Review</a>
+                                <a href={`/contacts`} className='font-bold glow-text'>Contacts</a>
+                                <a href={`/pricedetails`} className='font-bold glow-text'>Price</a>
                                 <a href={`/ordernow`} className='font-bold glow-text'>Order Now</a>
-                                <div className='font-bold glow-text'>Site Map</div>
+                                <a href={`/contacts`} className='font-bold glow-text'>Site Map</a>
                             </div>
                         </div>
                     </div>
