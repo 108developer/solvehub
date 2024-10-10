@@ -1,11 +1,9 @@
-import { RequestCookies } from 'next/dist/compiled/@edge-runtime/cookies';
 import { create } from 'zustand';
 import { persist } from 'zustand/middleware';
 
 
 const baseURL = 'https://slovehub-be.vercel.app'; // Your Node.js backend URL
 
-// Zustand store to manage authentication state
 const useAuthStore = create(persist((set) => ({
   user: null, // User object (null when not logged in)
   error: null, // Authentication error state
