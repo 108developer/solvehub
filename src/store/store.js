@@ -22,11 +22,11 @@ const useAuthStore = create(persist((set) => ({
       console.log(userData);
       const response = await fetch(`${baseURL}/auth/login`, {
         method: "POST", // Set method to POST
+        body: JSON.stringify(userData), // Stringify the body
         credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData), // Stringify the body
       });
 
       if (!response.ok) {
